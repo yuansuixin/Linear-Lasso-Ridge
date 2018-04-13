@@ -1,0 +1,1048 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{LinearRegression }
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \section{线性回归}\label{ux7ebfux6027ux56deux5f52}
+
+    \subsection{【关键词】最小二乘法，线性}\label{ux5173ux952eux8bcdux6700ux5c0fux4e8cux4e58ux6cd5ux7ebfux6027}
+
+    \subsection{一、普通线性回归}\label{ux4e00ux666eux901aux7ebfux6027ux56deux5f52}
+
+    \subsubsection{1、原理}\label{ux539fux7406}
+
+    分类的目标变量是标称型数据，而回归将会对连续型的数据做出预测。
+
+    应当怎样从一大堆数据里求出回归方程呢？
+
+假定输人数据存放在矩阵X中，而回归系数存放在向量W中。那么对于给定的数据X1,
+预测结果将会通过
+
+Y=X*W
+
+给出。现在的问题是，手里有一些X和对应的Y,怎样才能找到W呢？
+
+一个常用的方法就是找出使误差最小的W。这里的误差是指预测Y值和真实Y值之间的差值，使用该误差的简单累加将使得正差值和负差值相互抵消，所以我
+们采用平方误差。
+
+    最小二乘法
+
+    平方误差可以写做:
+
+\begin{figure}
+\centering
+\includegraphics{attachment:1.PNG}
+\caption{1.PNG}
+\end{figure}
+
+对W求导，当导数为零时，平方误差最小，此时W等于：
+
+\begin{figure}
+\centering
+\includegraphics{attachment:2.PNG}
+\caption{2.PNG}
+\end{figure}
+
+    例如有下面一张图片：
+
+\begin{figure}
+\centering
+\includegraphics{attachment:3.PNG}
+\caption{3.PNG}
+\end{figure}
+
+求回归曲线，得到：
+
+\begin{figure}
+\centering
+\includegraphics{attachment:4.PNG}
+\caption{4.PNG}
+\end{figure}
+
+    \subsubsection{2、实例}\label{ux5b9eux4f8b}
+
+    导包
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+        \PY{k+kn}{from} \PY{n+nn}{pandas} \PY{k}{import} \PY{n}{Series}\PY{p}{,}\PY{n}{DataFrame}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+        \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+        
+        \PY{c+c1}{\PYZsh{} 普通线性回归}
+        \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{linear\PYZus{}model} \PY{k}{import} \PY{n}{LinearRegression}
+        \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{datasets} \PY{k}{import} \PY{n}{load\PYZus{}diabetes}
+\end{Verbatim}
+
+
+    获取糖尿病数据
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}56}]:} \PY{n}{diabetes} \PY{o}{=} \PY{n}{load\PYZus{}diabetes}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}102}]:} \PY{n}{data} \PY{o}{=} \PY{n}{diabetes}\PY{o}{.}\PY{n}{data}
+          \PY{n}{feature\PYZus{}names} \PY{o}{=} \PY{n}{diabetes}\PY{o}{.}\PY{n}{feature\PYZus{}names}
+          \PY{n}{target} \PY{o}{=} \PY{n}{diabetes}\PY{o}{.}\PY{n}{target}
+          \PY{n}{samples} \PY{o}{=} \PY{n}{DataFrame}\PY{p}{(}\PY{n}{data}\PY{o}{=}\PY{n}{data}\PY{p}{,}\PY{n}{columns}\PY{o}{=}\PY{n}{feature\PYZus{}names}\PY{p}{)}
+          \PY{n}{samples}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}102}]:}           age       sex       bmi        bp        s1        s2        s3  \textbackslash{}
+          0    0.038076  0.050680  0.061696  0.021872 -0.044223 -0.034821 -0.043401   
+          1   -0.001882 -0.044642 -0.051474 -0.026328 -0.008449 -0.019163  0.074412   
+          2    0.085299  0.050680  0.044451 -0.005671 -0.045599 -0.034194 -0.032356   
+          3   -0.089063 -0.044642 -0.011595 -0.036656  0.012191  0.024991 -0.036038   
+          4    0.005383 -0.044642 -0.036385  0.021872  0.003935  0.015596  0.008142   
+          5   -0.092695 -0.044642 -0.040696 -0.019442 -0.068991 -0.079288  0.041277   
+          6   -0.045472  0.050680 -0.047163 -0.015999 -0.040096 -0.024800  0.000779   
+          7    0.063504  0.050680 -0.001895  0.066630  0.090620  0.108914  0.022869   
+          8    0.041708  0.050680  0.061696 -0.040099 -0.013953  0.006202 -0.028674   
+          9   -0.070900 -0.044642  0.039062 -0.033214 -0.012577 -0.034508 -0.024993   
+          10  -0.096328 -0.044642 -0.083808  0.008101 -0.103389 -0.090561 -0.013948   
+          11   0.027178  0.050680  0.017506 -0.033214 -0.007073  0.045972 -0.065491   
+          12   0.016281 -0.044642 -0.028840 -0.009113 -0.004321 -0.009769  0.044958   
+          13   0.005383  0.050680 -0.001895  0.008101 -0.004321 -0.015719 -0.002903   
+          14   0.045341 -0.044642 -0.025607 -0.012556  0.017694 -0.000061  0.081775   
+          15  -0.052738  0.050680 -0.018062  0.080401  0.089244  0.107662 -0.039719   
+          16  -0.005515 -0.044642  0.042296  0.049415  0.024574 -0.023861  0.074412   
+          17   0.070769  0.050680  0.012117  0.056301  0.034206  0.049416 -0.039719   
+          18  -0.038207 -0.044642 -0.010517 -0.036656 -0.037344 -0.019476 -0.028674   
+          19  -0.027310 -0.044642 -0.018062 -0.040099 -0.002945 -0.011335  0.037595   
+          20  -0.049105 -0.044642 -0.056863 -0.043542 -0.045599 -0.043276  0.000779   
+          21  -0.085430  0.050680 -0.022373  0.001215 -0.037344 -0.026366  0.015505   
+          22  -0.085430 -0.044642 -0.004050 -0.009113 -0.002945  0.007767  0.022869   
+          23   0.045341  0.050680  0.060618  0.031053  0.028702 -0.047347 -0.054446   
+          24  -0.063635 -0.044642  0.035829 -0.022885 -0.030464 -0.018850 -0.006584   
+          25  -0.067268  0.050680 -0.012673 -0.040099 -0.015328  0.004636 -0.058127   
+          26  -0.107226 -0.044642 -0.077342 -0.026328 -0.089630 -0.096198  0.026550   
+          27  -0.023677 -0.044642  0.059541 -0.040099 -0.042848 -0.043589  0.011824   
+          28   0.052606 -0.044642 -0.021295 -0.074528 -0.040096 -0.037639 -0.006584   
+          29   0.067136  0.050680 -0.006206  0.063187 -0.042848 -0.095885  0.052322   
+          ..        {\ldots}       {\ldots}       {\ldots}       {\ldots}       {\ldots}       {\ldots}       {\ldots}   
+          412  0.074401 -0.044642  0.085408  0.063187  0.014942  0.013091  0.015505   
+          413 -0.052738 -0.044642 -0.000817 -0.026328  0.010815  0.007141  0.048640   
+          414  0.081666  0.050680  0.006728 -0.004523  0.109883  0.117056 -0.032356   
+          415 -0.005515 -0.044642  0.008883 -0.050428  0.025950  0.047224 -0.043401   
+          416 -0.027310 -0.044642  0.080019  0.098763 -0.002945  0.018101 -0.017629   
+          417 -0.052738 -0.044642  0.071397 -0.074528 -0.015328 -0.001314  0.004460   
+          418  0.009016 -0.044642 -0.024529 -0.026328  0.098876  0.094196  0.070730   
+          419 -0.020045 -0.044642 -0.054707 -0.053871 -0.066239 -0.057367  0.011824   
+          420  0.023546 -0.044642 -0.036385  0.000068  0.001183  0.034698 -0.043401   
+          421  0.038076  0.050680  0.016428  0.021872  0.039710  0.045032 -0.043401   
+          422 -0.078165  0.050680  0.077863  0.052858  0.078236  0.064447  0.026550   
+          423  0.009016  0.050680 -0.039618  0.028758  0.038334  0.073529 -0.072854   
+          424  0.001751  0.050680  0.011039 -0.019442 -0.016704 -0.003819 -0.047082   
+          425 -0.078165 -0.044642 -0.040696 -0.081414 -0.100638 -0.112795  0.022869   
+          426  0.030811  0.050680 -0.034229  0.043677  0.057597  0.068831 -0.032356   
+          427 -0.034575  0.050680  0.005650 -0.005671 -0.073119 -0.062691 -0.006584   
+          428  0.048974  0.050680  0.088642  0.087287  0.035582  0.021546 -0.024993   
+          429 -0.041840 -0.044642 -0.033151 -0.022885  0.046589  0.041587  0.056003   
+          430 -0.009147 -0.044642 -0.056863 -0.050428  0.021822  0.045345 -0.028674   
+          431  0.070769  0.050680 -0.030996  0.021872 -0.037344 -0.047034  0.033914   
+          432  0.009016 -0.044642  0.055229 -0.005671  0.057597  0.044719 -0.002903   
+          433 -0.027310 -0.044642 -0.060097 -0.029771  0.046589  0.019980  0.122273   
+          434  0.016281 -0.044642  0.001339  0.008101  0.005311  0.010899  0.030232   
+          435 -0.012780 -0.044642 -0.023451 -0.040099 -0.016704  0.004636 -0.017629   
+          436 -0.056370 -0.044642 -0.074108 -0.050428 -0.024960 -0.047034  0.092820   
+          437  0.041708  0.050680  0.019662  0.059744 -0.005697 -0.002566 -0.028674   
+          438 -0.005515  0.050680 -0.015906 -0.067642  0.049341  0.079165 -0.028674   
+          439  0.041708  0.050680 -0.015906  0.017282 -0.037344 -0.013840 -0.024993   
+          440 -0.045472 -0.044642  0.039062  0.001215  0.016318  0.015283 -0.028674   
+          441 -0.045472 -0.044642 -0.073030 -0.081414  0.083740  0.027809  0.173816   
+          
+                     s4        s5        s6  
+          0   -0.002592  0.019908 -0.017646  
+          1   -0.039493 -0.068330 -0.092204  
+          2   -0.002592  0.002864 -0.025930  
+          3    0.034309  0.022692 -0.009362  
+          4   -0.002592 -0.031991 -0.046641  
+          5   -0.076395 -0.041180 -0.096346  
+          6   -0.039493 -0.062913 -0.038357  
+          7    0.017703 -0.035817  0.003064  
+          8   -0.002592 -0.014956  0.011349  
+          9   -0.002592  0.067736 -0.013504  
+          10  -0.076395 -0.062913 -0.034215  
+          11   0.071210 -0.096433 -0.059067  
+          12  -0.039493 -0.030751 -0.042499  
+          13  -0.002592  0.038393 -0.013504  
+          14  -0.039493 -0.031991 -0.075636  
+          15   0.108111  0.036056 -0.042499  
+          16  -0.039493  0.052280  0.027917  
+          17   0.034309  0.027368 -0.001078  
+          18  -0.002592 -0.018118 -0.017646  
+          19  -0.039493 -0.008944 -0.054925  
+          20  -0.039493 -0.011901  0.015491  
+          21  -0.039493 -0.072128 -0.017646  
+          22  -0.039493 -0.061177 -0.013504  
+          23   0.071210  0.133599  0.135612  
+          24  -0.002592 -0.025952 -0.054925  
+          25   0.034309  0.019199 -0.034215  
+          26  -0.076395 -0.042572 -0.005220  
+          27  -0.039493 -0.015998  0.040343  
+          28  -0.039493 -0.000609 -0.054925  
+          29  -0.076395  0.059424  0.052770  
+          ..        {\ldots}       {\ldots}       {\ldots}  
+          412 -0.002592  0.006209  0.085907  
+          413 -0.039493 -0.035817  0.019633  
+          414  0.091875  0.054724  0.007207  
+          415  0.071210  0.014823  0.003064  
+          416  0.003312 -0.029528  0.036201  
+          417 -0.021412 -0.046879  0.003064  
+          418 -0.002592 -0.021394  0.007207  
+          419 -0.039493 -0.074089 -0.005220  
+          420  0.034309 -0.033249  0.061054  
+          421  0.071210  0.049769  0.015491  
+          422 -0.002592  0.040672 -0.009362  
+          423  0.108111  0.015567 -0.046641  
+          424  0.034309  0.024053  0.023775  
+          425 -0.076395 -0.020289 -0.050783  
+          426  0.057557  0.035462  0.085907  
+          427 -0.039493 -0.045421  0.032059  
+          428  0.034309  0.066048  0.131470  
+          429 -0.024733 -0.025952 -0.038357  
+          430  0.034309 -0.009919 -0.017646  
+          431 -0.039493 -0.014956 -0.001078  
+          432  0.023239  0.055684  0.106617  
+          433 -0.039493 -0.051401 -0.009362  
+          434 -0.039493 -0.045421  0.032059  
+          435 -0.002592 -0.038459 -0.038357  
+          436 -0.076395 -0.061177 -0.046641  
+          437 -0.002592  0.031193  0.007207  
+          438  0.034309 -0.018118  0.044485  
+          439 -0.011080 -0.046879  0.015491  
+          440  0.026560  0.044528 -0.025930  
+          441 -0.039493 -0.004220  0.003064  
+          
+          [442 rows x 10 columns]
+\end{Verbatim}
+            
+    抽取训练数据和预测数据
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}58}]:} \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{model\PYZus{}selection} \PY{k}{import} \PY{n}{train\PYZus{}test\PYZus{}split}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}59}]:} \PY{c+c1}{\PYZsh{} 研究bmi指标对血糖的影响趋势}
+         \PY{n}{samples} \PY{o}{=} \PY{n}{samples}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bp}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{n}{train} \PY{o}{=} \PY{n}{samples}\PY{o}{.}\PY{n}{values}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}
+\end{Verbatim}
+
+
+    创建数学模型
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}104}]:} \PY{n}{display}\PY{p}{(}\PY{n}{train}\PY{o}{.}\PY{n}{shape}\PY{p}{,}\PY{n}{target}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+\end{Verbatim}
+
+
+    
+    \begin{verbatim}
+(442, 1)
+    \end{verbatim}
+
+    
+    
+    \begin{verbatim}
+(442,)
+    \end{verbatim}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{n}{linear} \PY{o}{=} \PY{n}{LinearRegression}\PY{p}{(}\PY{p}{)}
+         
+         \PY{n}{linear}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{train}\PY{p}{,}\PY{n}{target}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}12}]:} LinearRegression(copy\_X=True, fit\_intercept=True, n\_jobs=1, normalize=False)
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{c+c1}{\PYZsh{} 获取训练数据}
+         \PY{n}{xmin}\PY{p}{,}\PY{n}{xmax} \PY{o}{=} \PY{n}{train}\PY{o}{.}\PY{n}{min}\PY{p}{(}\PY{p}{)}\PY{p}{,}\PY{n}{train}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{p}{)}
+         \PY{n}{X\PYZus{}test} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{n}{xmin}\PY{p}{,}\PY{n}{xmax}\PY{p}{,}\PY{l+m+mi}{100}\PY{p}{)}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}
+         
+         \PY{n}{y\PYZus{}} \PY{o}{=} \PY{n}{linear}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{,}\PY{n}{y\PYZus{}}\PY{p}{,}\PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{green}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{train}\PY{p}{,}\PY{n}{target}\PY{p}{,}\PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{orange}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bp}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}14}]:} Text(0.5,1,'bp')
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_23_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    第一步：训练
+
+    第二步：预测
+
+    第三步：绘制图形
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{n}{Series}\PY{p}{(}\PY{n}{y\PYZus{}}\PY{p}{)}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}18}]:} <matplotlib.axes.\_subplots.AxesSubplot at 0x22e7fdf81d0>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_27_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{c+c1}{\PYZsh{} 获取所有的系数}
+         \PY{n}{linear}\PY{o}{.}\PY{n}{coef\PYZus{}}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}19}]:} array([714.7416437])
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} boston数据线性关系}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{metrics} \PY{k}{import} \PY{n}{r2\PYZus{}score}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} \PY{k+kn}{import} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{datasets} \PY{k}{as} \PY{n+nn}{datasets}
+         
+         \PY{n}{boston} \PY{o}{=} \PY{n}{datasets}\PY{o}{.}\PY{n}{load\PYZus{}boston}\PY{p}{(}\PY{p}{)}
+         \PY{n}{data} \PY{o}{=} \PY{n}{boston}\PY{o}{.}\PY{n}{data}
+         \PY{n}{target} \PY{o}{=} \PY{n}{boston}\PY{o}{.}\PY{n}{target}
+         \PY{n}{feature\PYZus{}names} \PY{o}{=} \PY{n}{boston}\PY{o}{.}\PY{n}{feature\PYZus{}names}
+         \PY{n}{samples} \PY{o}{=} \PY{n}{DataFrame}\PY{p}{(}\PY{n}{data}\PY{o}{=}\PY{n}{data}\PY{p}{,}\PY{n}{columns}\PY{o}{=}\PY{n}{feature\PYZus{}names}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}23}]:} \PY{n}{X\PYZus{}train}\PY{p}{,}\PY{n}{X\PYZus{}test}\PY{p}{,}\PY{n}{y\PYZus{}train}\PY{p}{,}\PY{n}{y\PYZus{}test} \PY{o}{=} \PY{n}{train\PYZus{}test\PYZus{}split}\PY{p}{(}\PY{n}{samples}\PY{p}{,}\PY{n}{target}\PY{p}{,}\PY{n}{test\PYZus{}size}\PY{o}{=}\PY{l+m+mf}{0.2}\PY{p}{,}\PY{n}{random\PYZus{}state}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+         
+         \PY{n}{linear} \PY{o}{=} \PY{n}{LinearRegression}\PY{p}{(}\PY{p}{)}
+         \PY{n}{linear}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,}\PY{n}{y\PYZus{}train}\PY{p}{)}
+         \PY{n}{y\PYZus{}} \PY{o}{=} \PY{n}{linear}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{)}
+         
+         \PY{n}{r2\PYZus{}score}\PY{p}{(}\PY{n}{y\PYZus{}test}\PY{p}{,}\PY{n}{y\PYZus{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}23}]:} 0.7634809220792437
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}24}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{y\PYZus{}}\PY{p}{,}\PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Predict}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{y\PYZus{}test}\PY{p}{,}\PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{True}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}24}]:} <matplotlib.legend.Legend at 0x22e7fa4b2e8>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_33_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsection{二、岭回归}\label{ux4e8cux5cadux56deux5f52}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{o}{=} \PY{n}{w1}\PY{o}{*}\PY{n}{x1} \PY{o}{+} \PY{n}{w2}\PY{o}{*}\PY{n}{x2} \PY{o}{+} \PY{n}{w3}\PY{o}{*}\PY{n}{x3}
+        
+        \PY{l+m+mi}{1}   \PY{l+m+mi}{2}  \PY{l+m+mi}{4}  \PY{l+m+mi}{7}
+        \PY{l+m+mi}{2}   \PY{l+m+mi}{5}  \PY{l+m+mi}{3}  \PY{l+m+mi}{2}
+        \PY{l+m+mi}{3}   \PY{l+m+mi}{6}  \PY{l+m+mi}{1}  \PY{l+m+mi}{9}
+        
+        
+        \PY{c+c1}{\PYZsh{} 有解方程}
+        \PY{l+m+mi}{1} \PY{o}{=} \PY{n}{a}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+} \PY{n}{b}\PY{o}{*}\PY{l+m+mi}{4} \PY{o}{+} \PY{n}{c}\PY{o}{*}\PY{l+m+mi}{7}
+        \PY{l+m+mi}{2} \PY{o}{=} \PY{n}{a}\PY{o}{*}\PY{l+m+mi}{5} \PY{o}{+} \PY{n}{b}\PY{o}{*}\PY{l+m+mi}{3} \PY{o}{+} \PY{n}{c}\PY{o}{*}\PY{l+m+mi}{2}
+        \PY{l+m+mi}{3} \PY{o}{=} \PY{n}{a}\PY{o}{*}\PY{l+m+mi}{6} \PY{o}{+} \PY{n}{b}\PY{o}{*}\PY{l+m+mi}{1} \PY{o}{+} \PY{n}{c}\PY{o}{*}\PY{l+m+mi}{9}
+        
+        \PY{c+c1}{\PYZsh{} 无解方程}
+        \PY{l+m+mi}{1} \PY{o}{=} \PY{n}{a}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+} \PY{n}{b}\PY{o}{*}\PY{l+m+mi}{4} \PY{o}{+} \PY{n}{c}\PY{o}{*}\PY{l+m+mi}{7}
+        \PY{l+m+mi}{2} \PY{o}{=} \PY{n}{a}\PY{o}{*}\PY{l+m+mi}{5} \PY{o}{+} \PY{n}{b}\PY{o}{*}\PY{l+m+mi}{3} \PY{o}{+} \PY{n}{c}\PY{o}{*}\PY{l+m+mi}{2}
+        
+        
+        \PY{c+c1}{\PYZsh{} 不满秩矩阵 不能求逆}
+        \PY{c+c1}{\PYZsh{} 数据样本的个数 \PYZlt{} 数据特征的个数 需要使用岭回归}
+        \PY{c+c1}{\PYZsh{} 多重共线性}
+        \PY{l+m+mi}{2}  \PY{l+m+mi}{4}  \PY{l+m+mi}{7}        \PY{l+m+mi}{1} \PY{l+m+mi}{0} \PY{l+m+mi}{0}      \PY{l+m+mi}{3}  \PY{l+m+mi}{4}  \PY{l+m+mi}{7}
+        \PY{l+m+mi}{5}  \PY{l+m+mi}{3}  \PY{l+m+mi}{2}   \PY{o}{+} \PY{n}{λ}\PY{o}{*}\PY{l+m+mi}{0} \PY{l+m+mi}{1} \PY{l+m+mi}{0}  \PY{o}{=}   \PY{l+m+mi}{5}  \PY{l+m+mi}{4}  \PY{l+m+mi}{2}  \PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}} \PY{n}{可以求逆} \PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}} \PY{n}{线性回归模型就可用了}
+                       \PY{l+m+mi}{0} \PY{l+m+mi}{0} \PY{l+m+mi}{1}      \PY{l+m+mi}{0}  \PY{l+m+mi}{0}  \PY{l+m+mi}{1}
+            
+\end{Verbatim}
+
+
+    \subsubsection{1、原理}\label{ux539fux7406}
+
+    缩减系数来``理解''数据
+
+    如果数据的特征比样本点还多应该怎么办？是否还可以使用线性回归和之前的方法来做预测？
+
+答案是否定的，即不能再使用前面介绍的方法。这是因为输入数据的矩阵X不是满秩矩阵。非满秩矩阵在求逆时会出现问题。
+
+为了解决这个问题，统计学家引入了岭回归（ridge regression)的概念
+
+    \begin{figure}
+\centering
+\includegraphics{attachment:5.PNG}
+\caption{5.PNG}
+\end{figure}
+
+    缩减方法可以去掉不重要的参数，因此能更好地理解数据。此外，与简单的线性回归相比，缩减法能取得更好的预测效果。
+
+    岭回归是加了二阶正则项的最小二乘，主要适用于过拟合严重或各变量之间存在多重共线性的时候，岭回归是有bias的，这里的bias是为了让variance更小。
+
+    \paragraph{归纳总结}\label{ux5f52ux7eb3ux603bux7ed3}
+
+    1.岭回归可以解决特征数量比样本量多的问题
+
+2.岭回归作为一种缩减算法可以判断哪些特征重要或者不重要，有点类似于降维的效果
+
+3.缩减算法可以看作是对一个模型增加偏差的同时减少方差
+
+    岭回归用于处理下面两类问题：
+
+1.数据点少于变量个数
+
+2.变量间存在共线性（最小二乘回归得到的系数不稳定，方差很大）
+
+    \subsubsection{2、实例}\label{ux5b9eux4f8b}
+
+    岭回归一般用在样本值不够的时候
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}26}]:} \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{linear\PYZus{}model} \PY{k}{import} \PY{n}{Ridge}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}27}]:} \PY{n}{x} \PY{o}{=} \PY{p}{[}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{]}
+         \PY{n}{y} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}
+\end{Verbatim}
+
+
+    使用普通线性回归
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}28}]:} \PY{n}{linear} \PY{o}{=} \PY{n}{LinearRegression}\PY{p}{(}\PY{p}{)}
+         \PY{n}{linear}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}28}]:} LinearRegression(copy\_X=True, fit\_intercept=True, n\_jobs=1, normalize=False)
+\end{Verbatim}
+            
+    使用岭回归
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}29}]:} \PY{c+c1}{\PYZsh{} alpha就是λ}
+         \PY{n}{ridge} \PY{o}{=} \PY{n}{Ridge}\PY{p}{(}\PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.01}\PY{p}{)}
+         \PY{n}{ridge}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}29}]:} Ridge(alpha=0.01, copy\_X=True, fit\_intercept=True, max\_iter=None,
+            normalize=False, random\_state=None, solver='auto', tol=0.001)
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}30}]:} \PY{n}{linear}\PY{o}{.}\PY{n}{coef\PYZus{}}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}30}]:} array([ 0.33333333, -0.33333333, -0.66666667])
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}31}]:} \PY{c+c1}{\PYZsh{} 岭回归可以缩减系数}
+         \PY{n}{ridge}\PY{o}{.}\PY{n}{coef\PYZus{}}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}31}]:} array([ 0.33222591, -0.33222591, -0.66445183])
+\end{Verbatim}
+            
+    深入研究岭回归
+
+\begin{itemize}
+\tightlist
+\item
+  理解岭回归缩减系数）
+\end{itemize}
+
+【备注】coef\_函数可以获取机器学习模型中各个特征值的系数
+
+    拓展：岭回归
+
+    创建一个假象数据样本集
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}32}]:} \PY{n}{X} \PY{o}{=} \PY{l+m+mf}{1.} \PY{o}{/} \PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{11}\PY{p}{)} \PY{o}{+} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+         
+         \PY{n}{y} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{,}\PY{l+m+mi}{7}\PY{p}{,}\PY{l+m+mi}{8}\PY{p}{,}\PY{l+m+mi}{9}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}33}]:} \PY{c+c1}{\PYZsh{} 研究λ对岭回归系数的影响}
+         \PY{c+c1}{\PYZsh{} }
+         \PY{n}{alphas} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{logspace}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{10}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{200}\PY{p}{)}
+         \PY{n}{alphas}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}33}]:} array([1.00000000e-10, 1.09698580e-10, 1.20337784e-10, 1.32008840e-10,
+                1.44811823e-10, 1.58856513e-10, 1.74263339e-10, 1.91164408e-10,
+                2.09704640e-10, 2.30043012e-10, 2.52353917e-10, 2.76828663e-10,
+                3.03677112e-10, 3.33129479e-10, 3.65438307e-10, 4.00880633e-10,
+                4.39760361e-10, 4.82410870e-10, 5.29197874e-10, 5.80522552e-10,
+                6.36824994e-10, 6.98587975e-10, 7.66341087e-10, 8.40665289e-10,
+                9.22197882e-10, 1.01163798e-09, 1.10975250e-09, 1.21738273e-09,
+                1.33545156e-09, 1.46497140e-09, 1.60705282e-09, 1.76291412e-09,
+                1.93389175e-09, 2.12145178e-09, 2.32720248e-09, 2.55290807e-09,
+                2.80050389e-09, 3.07211300e-09, 3.37006433e-09, 3.69691271e-09,
+                4.05546074e-09, 4.44878283e-09, 4.88025158e-09, 5.35356668e-09,
+                5.87278661e-09, 6.44236351e-09, 7.06718127e-09, 7.75259749e-09,
+                8.50448934e-09, 9.32930403e-09, 1.02341140e-08, 1.12266777e-08,
+                1.23155060e-08, 1.35099352e-08, 1.48202071e-08, 1.62575567e-08,
+                1.78343088e-08, 1.95639834e-08, 2.14614120e-08, 2.35428641e-08,
+                2.58261876e-08, 2.83309610e-08, 3.10786619e-08, 3.40928507e-08,
+                3.73993730e-08, 4.10265811e-08, 4.50055768e-08, 4.93704785e-08,
+                5.41587138e-08, 5.94113398e-08, 6.51733960e-08, 7.14942899e-08,
+                7.84282206e-08, 8.60346442e-08, 9.43787828e-08, 1.03532184e-07,
+                1.13573336e-07, 1.24588336e-07, 1.36671636e-07, 1.49926843e-07,
+                1.64467618e-07, 1.80418641e-07, 1.97916687e-07, 2.17111795e-07,
+                2.38168555e-07, 2.61267523e-07, 2.86606762e-07, 3.14403547e-07,
+                3.44896226e-07, 3.78346262e-07, 4.15040476e-07, 4.55293507e-07,
+                4.99450512e-07, 5.47890118e-07, 6.01027678e-07, 6.59318827e-07,
+                7.23263390e-07, 7.93409667e-07, 8.70359136e-07, 9.54771611e-07,
+                1.04737090e-06, 1.14895100e-06, 1.26038293e-06, 1.38262217e-06,
+                1.51671689e-06, 1.66381689e-06, 1.82518349e-06, 2.00220037e-06,
+                2.19638537e-06, 2.40940356e-06, 2.64308149e-06, 2.89942285e-06,
+                3.18062569e-06, 3.48910121e-06, 3.82749448e-06, 4.19870708e-06,
+                4.60592204e-06, 5.05263107e-06, 5.54266452e-06, 6.08022426e-06,
+                6.66991966e-06, 7.31680714e-06, 8.02643352e-06, 8.80488358e-06,
+                9.65883224e-06, 1.05956018e-05, 1.16232247e-05, 1.27505124e-05,
+                1.39871310e-05, 1.53436841e-05, 1.68318035e-05, 1.84642494e-05,
+                2.02550194e-05, 2.22194686e-05, 2.43744415e-05, 2.67384162e-05,
+                2.93316628e-05, 3.21764175e-05, 3.52970730e-05, 3.87203878e-05,
+                4.24757155e-05, 4.65952567e-05, 5.11143348e-05, 5.60716994e-05,
+                6.15098579e-05, 6.74754405e-05, 7.40196000e-05, 8.11984499e-05,
+                8.90735464e-05, 9.77124154e-05, 1.07189132e-04, 1.17584955e-04,
+                1.28989026e-04, 1.41499130e-04, 1.55222536e-04, 1.70276917e-04,
+                1.86791360e-04, 2.04907469e-04, 2.24780583e-04, 2.46581108e-04,
+                2.70495973e-04, 2.96730241e-04, 3.25508860e-04, 3.57078596e-04,
+                3.91710149e-04, 4.29700470e-04, 4.71375313e-04, 5.17092024e-04,
+                5.67242607e-04, 6.22257084e-04, 6.82607183e-04, 7.48810386e-04,
+                8.21434358e-04, 9.01101825e-04, 9.88495905e-04, 1.08436597e-03,
+                1.18953407e-03, 1.30490198e-03, 1.43145894e-03, 1.57029012e-03,
+                1.72258597e-03, 1.88965234e-03, 2.07292178e-03, 2.27396575e-03,
+                2.49450814e-03, 2.73644000e-03, 3.00183581e-03, 3.29297126e-03,
+                3.61234270e-03, 3.96268864e-03, 4.34701316e-03, 4.76861170e-03,
+                5.23109931e-03, 5.73844165e-03, 6.29498899e-03, 6.90551352e-03,
+                7.57525026e-03, 8.30994195e-03, 9.11588830e-03, 1.00000000e-02])
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}34}]:} \PY{n}{ridge} \PY{o}{=} \PY{n}{Ridge}\PY{p}{(}\PY{p}{)}
+         
+         \PY{n}{coefs} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{k}{for} \PY{n}{alpha} \PY{o+ow}{in} \PY{n}{alphas}\PY{p}{:}
+             \PY{n}{ridge}\PY{o}{.}\PY{n}{set\PYZus{}params}\PY{p}{(}\PY{n}{alpha}\PY{o}{=}\PY{n}{alpha}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{} 使用不同的λ系数的岭回归模型，训练相同的一组数据集}
+             \PY{n}{ridge}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X}\PY{p}{,}\PY{n}{y}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{} 每训练一次，都会得到一组系数}
+             \PY{n}{coefs}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{ridge}\PY{o}{.}\PY{n}{coef\PYZus{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}35}]:} \PY{c+c1}{\PYZsh{} 绘图展示λ和coef之间的关系}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{)}\PY{p}{)}
+         \PY{n}{data} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{alphas}\PY{p}{,}\PY{n}{coefs}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xscale}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{log}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_61_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    创建一个alpha集合，用以验证种不同alpha值对预测系数的结果的影响
+
+    创建岭回归机器学习算法对象
+
+    使用不同的alpha进行数据训练，保存所有训练结果的coef\_
+
+    绘图查看alpha参数和coefs的关系
+
+    \subsection{三、lasso回归}\label{ux4e09lassoux56deux5f52}
+
+    \subsubsection{1、原理}\label{ux539fux7406}
+
+    【拉格朗日乘数法】
+
+对于参数w增加一个限定条件，能到达和岭回归一样的效果：
+
+\begin{figure}
+\centering
+\includegraphics{attachment:6.PNG}
+\caption{6.PNG}
+\end{figure}
+
+    在lambda足够小的时候，一些系数会因此被迫缩减到0
+
+    \subsubsection{2、实例}\label{ux5b9eux4f8b}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}107}]:} \PY{c+c1}{\PYZsh{} boston房价}
+          \PY{n}{boston} \PY{o}{=} \PY{n}{datasets}\PY{o}{.}\PY{n}{load\PYZus{}boston}\PY{p}{(}\PY{p}{)}
+          \PY{n}{data} \PY{o}{=} \PY{n}{boston}\PY{o}{.}\PY{n}{data}
+          \PY{n}{target} \PY{o}{=} \PY{n}{boston}\PY{o}{.}\PY{n}{target}
+          \PY{n}{feature\PYZus{}names} \PY{o}{=} \PY{n}{boston}\PY{o}{.}\PY{n}{feature\PYZus{}names}
+          \PY{n}{samples} \PY{o}{=} \PY{n}{DataFrame}\PY{p}{(}\PY{n}{data}\PY{o}{=}\PY{n}{data}\PY{p}{,}\PY{n}{columns}\PY{o}{=}\PY{n}{feature\PYZus{}names}\PY{p}{)}
+          
+          \PY{n}{X\PYZus{}train}\PY{p}{,}\PY{n}{X\PYZus{}test}\PY{p}{,}\PY{n}{y\PYZus{}train}\PY{p}{,}\PY{n}{y\PYZus{}test} \PY{o}{=} \PY{n}{train\PYZus{}test\PYZus{}split}\PY{p}{(}\PY{n}{samples}\PY{p}{,}\PY{n}{target}\PY{p}{,}\PY{n}{test\PYZus{}size}\PY{o}{=}\PY{l+m+mf}{0.2}\PY{p}{,}\PY{n}{random\PYZus{}state}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}108}]:} \PY{n}{display}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{o}{.}\PY{n}{shape}\PY{p}{,}\PY{n}{y\PYZus{}train}\PY{o}{.}\PY{n}{shape}\PY{p}{,}\PY{n}{X\PYZus{}test}\PY{o}{.}\PY{n}{shape}\PY{p}{,}\PY{n}{y\PYZus{}test}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+\end{Verbatim}
+
+
+    
+    \begin{verbatim}
+(404, 13)
+    \end{verbatim}
+
+    
+    
+    \begin{verbatim}
+(404,)
+    \end{verbatim}
+
+    
+    
+    \begin{verbatim}
+(102, 13)
+    \end{verbatim}
+
+    
+    
+    \begin{verbatim}
+(102,)
+    \end{verbatim}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}115}]:} \PY{c+c1}{\PYZsh{} a = X\PYZus{}train.values.reshape(\PYZhy{}1,1)}
+          \PY{c+c1}{\PYZsh{} display(a.shape,y\PYZus{}train.shape)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}116}]:} \PY{c+c1}{\PYZsh{} plt.scatter(a,y\PYZus{}train)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}38}]:} \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{linear\PYZus{}model} \PY{k}{import} \PY{n}{Lasso}
+         \PY{n}{ridge} \PY{o}{=} \PY{n}{Ridge}\PY{p}{(}\PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.8}\PY{p}{)}
+         \PY{n}{lasso} \PY{o}{=} \PY{n}{Lasso}\PY{p}{(}\PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.0006}\PY{p}{)}
+         
+         \PY{n}{ridge}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,}\PY{n}{y\PYZus{}train}\PY{p}{)}
+         \PY{n}{lasso}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,}\PY{n}{y\PYZus{}train}\PY{p}{)}
+         
+         \PY{n}{y1\PYZus{}} \PY{o}{=} \PY{n}{ridge}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{)}
+         \PY{n}{y2\PYZus{}} \PY{o}{=} \PY{n}{lasso}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{)}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ridge r2\PYZus{}score is }\PY{l+s+si}{\PYZpc{}f}\PY{l+s+s1}{\PYZsq{}}\PY{o}{\PYZpc{}} \PY{n}{r2\PYZus{}score}\PY{p}{(}\PY{n}{y\PYZus{}test}\PY{p}{,}\PY{n}{y1\PYZus{}}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{lasso r2\PYZus{}score is }\PY{l+s+si}{\PYZpc{}f}\PY{l+s+s1}{\PYZsq{}}\PY{o}{\PYZpc{}} \PY{n}{r2\PYZus{}score}\PY{p}{(}\PY{n}{y\PYZus{}test}\PY{p}{,}\PY{n}{y2\PYZus{}}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+ridge r2\_score is 0.765714
+lasso r2\_score is 0.763532
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}39}]:} \PY{n}{ridge}\PY{o}{.}\PY{n}{coef\PYZus{}}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}39}]:} array([-1.06778121e-01,  5.85331114e-02, -1.53308847e-02,  1.96862960e+00,
+                -1.19074999e+01,  3.15119992e+00, -1.78841078e-03, -1.38612510e+00,
+                 2.87468050e-01, -1.18525460e-02, -9.03202511e-01,  7.82130600e-03,
+                -5.55011590e-01])
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}40}]:} \PY{n}{lasso}\PY{o}{.}\PY{n}{coef\PYZus{}}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}40}]:} array([-1.11200981e-01,  5.80377927e-02,  1.78595557e-02,  2.12213214e+00,
+                -1.94134564e+01,  3.08852219e+00,  4.40377433e-03, -1.49711536e+00,
+                 3.04419685e-01, -1.11358504e-02, -9.87853509e-01,  7.43569257e-03,
+                -5.45952385e-01])
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}41}]:} \PY{n}{linear} \PY{o}{=} \PY{n}{LinearRegression}\PY{p}{(}\PY{p}{)}
+         \PY{n}{linear}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,}\PY{n}{y\PYZus{}train}\PY{p}{)}
+         \PY{n}{y\PYZus{}} \PY{o}{=} \PY{n}{linear}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{)}
+         \PY{n}{r2\PYZus{}score}\PY{p}{(}\PY{n}{y\PYZus{}test}\PY{p}{,}\PY{n}{y\PYZus{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}41}]:} 0.7634809220792437
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} 
+\end{Verbatim}
+
+
+    \subsection{四、普通线性回归、岭回归与lasso回归比较}\label{ux56dbux666eux901aux7ebfux6027ux56deux5f52ux5cadux56deux5f52ux4e0elassoux56deux5f52ux6bd4ux8f83}
+
+    导包，导入sklearn.metrics.r2\_score用于给模型打分
+
+    使用numpy创建数据X，创建系数，对系数进行处理，对部分系数进行归零化操作，然后根据系数进行矩阵操作求得目标值\\
+增加噪声
+
+    训练数据和测试数据
+
+    分别使用线性回归，岭回归，Lasso回归进行数据预测
+
+    数据视图，此处获取各个算法的训练数据的coef\_:系数
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
